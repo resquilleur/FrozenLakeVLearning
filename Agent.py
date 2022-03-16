@@ -23,7 +23,7 @@ class Agent:
         target_counts = self.transits[(state, action)]
         total = sum(target_counts.values())
         action_value = 0.0
-        for tgt_state, count in target_counts.item():
+        for tgt_state, count in target_counts.items():
             reward = self.rewards[(state, action, tgt_state)]
             action_value += (count / total) * (reward + self.GAMMA *
                                                self.values[tgt_state])
@@ -33,10 +33,10 @@ class Agent:
         best_action, best_value = None, None
         for action in range(self.env.action_space.n):
             action_value = self.calc_action_value(state, action)
-            if best_value is None or best_value < action_value:
+            if (best_value is None) or (best_value < action_value):
                 best_value = action_value
                 best_action = action
-            return best_action
+        return best_action
 
     def play_episode(self, env):
         total_reward = 0.0

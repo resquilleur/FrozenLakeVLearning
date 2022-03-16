@@ -2,15 +2,15 @@ import gym
 from tensorboardX import SummaryWriter
 import Agent
 
-ENV_NAME = "FrozenLake-v0"
+ENV_NAME = "FrozenLake-v1"
 GAMMA = 0.9
 TEST_EPISODES = 20
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_env = gym.make(ENV_NAME)
-    agent = Agent(env_name=ENV_NAME, gamma=GAMMA)
+    test_env = gym.make(ENV_NAME, map_name="4x4", is_slippery=False)
+    agent = Agent.Agent(env_name=ENV_NAME, gamma=GAMMA)
     writer = SummaryWriter(comment="-v-iteration")
     iter_no = 0
     best_reward = 0.0
